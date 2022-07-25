@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:08:11 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/25 09:10:39 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/25 10:36:07 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int	main(void)
 	{
 		ft_proc_signal(*str);
 		str++;
+		pause();
 	}
 	*/
 }
