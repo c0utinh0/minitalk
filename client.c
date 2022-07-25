@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:07:41 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/25 11:31:46 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/25 17:40:36 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	ft_char_to_bin(char c, pid_t pid)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-//			usleep(100);
+//			pause();
+			usleep(1000);
 			i--;
 			g_received = 0;
 		}
@@ -68,21 +69,6 @@ void    cl_handler(int signum, siginfo_t *siginfo, void *context)
 
 int	main(int argc, char *argv[])
 {
-	/*
-	pid_t	pid;
-	char	*str;
-
-	(void) argc;
-	str = argv[2];
-	pid = atoi(argv[1]); // Mudar para ft_atoi
-	
-	while(*str)
-	{
-		ft_char_to_bin(*str, pid);
-		str++;
-	}
-	return(0);
-	*/
 	
 	pid_t	pid;
 	char	*str;
@@ -92,32 +78,46 @@ int	main(int argc, char *argv[])
 
     g_received = 1;
     sigemptyset(&set);
-//    sigaddset(&sigac.sa_mask, SIGINT);
-//    sigaddset(&sigac.sa_mask, SIGQUIT);
+//  sigaddset(&sigac.sa_mask, SIGINT);
+//  sigaddset(&sigac.sa_mask, SIGQUIT);
     sigaddset(&set, SIGUSR2);
     sigac.sa_flags = SA_SIGINFO;
     sigac.sa_sigaction = (void *)cl_handler;
     sigac.sa_mask = set;
-    sigaction(SIGUSR2, &sigac, NULL);
-//    if (sigaction(SIGUSR2, &sigac, NULL) == -1)
-//        errors("Error in client sigaction\n");
-//    if (atoi(argv[1]) < 0)
-//        errors("Wrong PID!\n");
-//    if (argc == 3)
-//        send_str(atoi(argv[1]), argv[2]);
-//    else
-//        errors("Wrong arguments!\n");
+//  sigaction(SIGUSR2, &sigac, NULL);
     
+	(void) argc;
+	str = argv[2];
+	pid = atoi(argv[1]); // Mudar para ft_atoi
+	
+	if (sigaction(SIGUSR2, &sigac, NULL) == -1)
+	{
+		printf("Error in client sigaction\n");
+		return(0);
+	}
+	if (pid < 0)
+	{
+		printf("Wrong PID!\n");
+		return(0);
+	}
+	if (argc == 3)
+		send_str(pid, str);
+	else
+	{
+		printf("Wrong arguments!\n");
+		return(0);
+	}
+
 //    if (argc == 3)
 //        send_str(atoi(argv[1]), argv[2]);
 //    while (1)
 //         sleep(5);
 
-	(void) argc;
-	str = argv[2];
-	pid = atoi(argv[1]); // Mudar para ft_atoi
+//	(void) argc;
+//	str = argv[2];
+//	pid = atoi(argv[1]); // Mudar para ft_atoi
 
-send_str(pid, str);
+//send_str(pid, str);
 //sleep(5);
 
 //	while(*str)
