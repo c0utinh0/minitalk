@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:07:41 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/25 10:36:28 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/25 11:31:46 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	ft_char_to_bin(char c, pid_t pid)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(1000);
+//			usleep(100);
 			i--;
 			g_received = 0;
 		}
-		
+			
 	}
 }
 
@@ -61,7 +61,7 @@ void    cl_handler(int signum, siginfo_t *siginfo, void *context)
 	if(signum == SIGUSR2)
 	{
 		g_received = 1;
-		write(1, "Recieved signal from server\n", 28);
+		write(1, "Recieved\n", 28);
 	}
 	return ;
 }
@@ -118,7 +118,7 @@ int	main(int argc, char *argv[])
 	pid = atoi(argv[1]); // Mudar para ft_atoi
 
 send_str(pid, str);
-sleep(5);
+//sleep(5);
 
 //	while(*str)
 //	{
