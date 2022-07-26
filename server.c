@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:08:11 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/25 17:39:23 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/26 10:51:23 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ static void signal_handler(int signal, siginfo_t *siginfo, void *ucontext)
 	{
 		ft_proc_signal('1');
 //		usleep(100);
-		kill(siginfo->si_pid, SIGUSR2);
+//		kill(siginfo->si_pid, SIGUSR2);
 	}
 	else if (signal == SIGUSR2)
 	{
 		ft_proc_signal('0');
 //		usleep(100);
-		kill(siginfo->si_pid, SIGUSR2);
+//		kill(siginfo->si_pid, SIGUSR2);
 	}
 	return;
 }
@@ -114,8 +114,8 @@ int	main(void)
 	struct sigaction action;
 	
 	sigemptyset(&set);
-	sigaddset(&set, SIGUSR1);
-	sigaddset(&set, SIGUSR2);
+//	sigaddset(&set, SIGUSR1);
+//	sigaddset(&set, SIGUSR2);
 	action.sa_sigaction = (void *)signal_handler;
 	action.sa_flags = SA_SIGINFO;
 	action.sa_mask = set;
@@ -128,8 +128,8 @@ int	main(void)
 		printf("errou usr2");
 
 	while(1)
-//		pause();
-		usleep(100);
+		pause();
+//		usleep(100);
 	return(0);
 
 

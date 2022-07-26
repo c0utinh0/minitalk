@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:07:41 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/25 17:40:36 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/26 10:53:17 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_char_to_bin(char c, pid_t pid)
 	i = 7;	
 	while(i >= 0)
 	{
+		/*
 		if(g_received == 1)
 		{
 
@@ -36,7 +37,14 @@ void	ft_char_to_bin(char c, pid_t pid)
 			i--;
 			g_received = 0;
 		}
-			
+		*/	
+		if(c & (1 << i))
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+//			pause();
+		usleep(200);
+		i--;
 	}
 }
 
@@ -53,7 +61,7 @@ int send_str(int pid, char *s)
     }
     return (0);
 }
-
+/*
 void    cl_handler(int signum, siginfo_t *siginfo, void *context)
 {
 	(void)context;
@@ -66,12 +74,13 @@ void    cl_handler(int signum, siginfo_t *siginfo, void *context)
 	}
 	return ;
 }
-
+*/
 int	main(int argc, char *argv[])
 {
 	
 	pid_t	pid;
 	char	*str;
+/*
 	sigset_t set;
 
 	struct sigaction    sigac;
@@ -85,11 +94,11 @@ int	main(int argc, char *argv[])
     sigac.sa_sigaction = (void *)cl_handler;
     sigac.sa_mask = set;
 //  sigaction(SIGUSR2, &sigac, NULL);
-    
+  */  
 	(void) argc;
 	str = argv[2];
 	pid = atoi(argv[1]); // Mudar para ft_atoi
-	
+/*	
 	if (sigaction(SIGUSR2, &sigac, NULL) == -1)
 	{
 		printf("Error in client sigaction\n");
@@ -107,9 +116,9 @@ int	main(int argc, char *argv[])
 		printf("Wrong arguments!\n");
 		return(0);
 	}
-
-//    if (argc == 3)
-//        send_str(atoi(argv[1]), argv[2]);
+*/
+   if (argc == 3)
+        send_str(atoi(argv[1]), argv[2]);
 //    while (1)
 //         sleep(5);
 
