@@ -6,15 +6,14 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:08:11 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/26 14:30:25 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:01:39 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h> //Remover
 #include <signal.h>
-#include <stdlib.h> //Remover
-#include <string.h> //Remover
+#include <stdlib.h>
+#include <string.h> 
 
 static void	ft_bin_to_dec(char	*num)
 {
@@ -78,11 +77,11 @@ int	main(void)
 	action.sa_sigaction = (void *)server_handler;
 	action.sa_flags = SA_SIGINFO;
 	action.sa_mask = set;
-	printf("PID: %d\n", getpid()); //
+	ft_printf("PID: %d\n", getpid()); //
 	if (sigaction(SIGUSR1, &action, NULL) == 0)
-		printf("erro usr1"); //
+		ft_printf("erro usr1"); //
 	if (sigaction(SIGUSR2, &action, NULL) == 0)
-		printf("errou usr2"); //
+		ft_printf("errou usr2"); //
 	while (1)
 		pause();
 	return (0);
