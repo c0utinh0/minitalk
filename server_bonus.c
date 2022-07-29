@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:08:11 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/29 17:35:06 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/29 18:21:29 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,12 @@ static int	ft_proc_signal(char value)
 	return (0);
 }
 
-static void	server_handler(int signal, siginfo_t *siginfo)
+static void	server_handler(int signal)
 {
 	if (signal == SIGUSR1)
 		ft_proc_signal('1');
 	else if (signal == SIGUSR2)
 		ft_proc_signal('0');
-	kill(siginfo->si_pid, SIGUSR1);
-	usleep(200);
 	return ;
 }
 
