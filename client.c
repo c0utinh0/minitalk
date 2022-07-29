@@ -6,14 +6,12 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:07:41 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/26 14:34:22 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/29 16:06:37 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
-#include <stdlib.h> //Remover
-#include <stdio.h> //Remover
-#include <unistd.h> //Remover
+#include "libft/libft.h"
 
 static int	send_str(int pid, char *s)
 {
@@ -46,17 +44,17 @@ int	main(int argc, char *argv[])
 
 	(void) argc;
 	str = argv[2];
-	pid = atoi(argv[1]); //
+	pid = atoi(argv[1]);
 	if (pid < 0)
 	{
-		printf("Wrong PID!\n"); //
+		ft_printf("Wrong PID!\n");
 		return (0);
 	}
 	if (argc == 3)
 		send_str(pid, str);
 	else
 	{
-		printf("Wrong arguments\n"); //
+		ft_printf("Wrong arguments\n");
 		return (0);
 	}
 	return (0);
