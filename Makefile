@@ -6,7 +6,7 @@
 #    By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/28 16:31:59 by dcoutinh          #+#    #+#              #
-#    Updated: 2022/07/29 15:25:48 by dcoutinh         ###   ########.fr        #
+#    Updated: 2022/07/29 17:23:53 by dcoutinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ NAME = minitalk.a
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS =  server.c	\
-		client.c
+	client.c	\
+	server_bonus.c	\
+	client_bonus.c
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -34,6 +37,11 @@ $(NAME): $(SRC)
 	$(CC) server.c $(NAME) -o server
 	$(CC) client.c $(NAME) -o client
 
+bonus: $(SRC)
+	$(LIBFT)
+	$(CC) server_bonus.c $(NAME) -o server_bonus
+	$(CC) client_bonus.c $(NAME) -o client_bonus
+
 
 clean: 
 	rm -f $(OBJS)
@@ -42,7 +50,7 @@ clean:
 fclean:
 	rm -f $(NAME)
 	$(FCLIBFT)
-	rm server client
+	rm server client server_bonus client_bonus
 
 re: fclean all
 
